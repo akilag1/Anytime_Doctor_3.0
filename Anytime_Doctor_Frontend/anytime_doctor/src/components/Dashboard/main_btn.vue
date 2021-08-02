@@ -2,13 +2,13 @@
 <div class="row contentrow">
      <div class="col-md-12 basicBtn">
           <div class="row">
-            <a href="#"><button class="btn btn-primary btn-lg keyBtn">Contact Doctor with Video Chat</button></a>
+            <router-link to="/doctors/online_available" tag="a"><button class="btn btn-primary btn-lg keyBtn">Contact Doctor with Video Chat</button></router-link>
           </div>  
           <div class="row">
-            <a href="#"><button class="btn btn-primary btn-lg keyBtn">Contact Doctor in Person</button></a>
+            <router-link to="/doctors/available" tag="a"><button class="btn btn-primary btn-lg keyBtn">Contact Doctor in Person</button></router-link>
           </div> 
           <div class="row">
-            <a href="#"><button class="btn btn-primary btn-lg keyBtn">Schedule Test</button></a>
+            <router-link to="/hospitals" tag="a"><button class="btn btn-primary btn-lg keyBtn">Schedule Test</button></router-link>
           </div> 
      </div>
 </div>    

@@ -1,9 +1,9 @@
 <template>
  <section class="testimonials text-center bg-light testMnial">
     <div class="row">
-      {{ this.fetchData() }}
-       <div v-for="doctor in doctors" :key="doctor.id">
-        <div class="col-lg-4 docitem" v-if=doctor.available_online> 
+       <!-- <div v-for="doctor in doctorList" :key="doctor.id"> -->
+         <!-- v-if="doctor.available_online" -->
+        <div class="col-lg-4 docitem" v-for="doctor in doctorList" :key="doctor.id"> 
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" :src=doctor.picture alt="">
             <h5>{{doctor.name}}</h5>
@@ -15,23 +15,29 @@
           </div>
         </div>
        </div>
-    </div>
+    <!-- </div> -->
  </section>      
 </template>
 <script>
+import axios from 'axios';
 export default {
     data:function(){
         return{
-          doctors:[]
+          doctorList:[]
         }   
     },
-    methods:{
-       fetchData:function(){
-            this.$http.get('http://localhost:8000/doctors/doctors/')
-                .then(response => {
-                    this.doctors = response.body;
-                })
-        }
+    created(){
+      axios.get('http://localhost:8001/doctors/doctors/')
+        .then(res =>{
+          const data=res.data
+          const doctors=[]
+          for(let key in data){
+            const doctor=data[key]
+            doctor.id=key
+            doctors.push(doctor)
+          }
+          this.doctorList=doctors
+        })
     }
 }
 </script>
