@@ -8,7 +8,7 @@
             <router-link to="/doctors/available" tag="a"><button class="btn btn-primary btn-lg keyBtn">Contact Doctor in Person</button></router-link>
           </div> 
           <div class="row">
-            <router-link to="/hospitals" tag="a"><button class="btn btn-primary btn-lg keyBtn">Schedule Test</button></router-link>
+            <router-link to="/hospitals/test_available" tag="a"><button class="btn btn-primary btn-lg keyBtn">Schedule Test</button></router-link>
           </div> 
      </div>
 </div>    

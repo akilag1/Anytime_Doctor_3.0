@@ -7,9 +7,6 @@
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" :src=hospital.picture alt="">
             <router-link :to="'/hospitals/' + hospital.id" tag="a"><h5>{{hospital.name}}</h5></router-link>
-            <div class="availbledoc">
-                <a href="">Book Test</a>
-            </div>
           </div>
         </div>
     </div>

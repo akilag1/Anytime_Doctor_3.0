@@ -2,15 +2,13 @@
 <div>
 <search></search>
  <section class="testimonials text-center bg-light testMnial">
-   {{this.checkAvl()}}
     <div class="row">
-        <div class="col-lg-4 docitem" v-for="doctor in filteredDocList" :key="doctor.id"> 
+        <div class="col-lg-4 docitem" v-for="hospital in hospitalList" :key="hospital.id">
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-            <img class="img-fluid rounded-circle mb-3" :src=doctor.picture alt="">
-            <router-link :to="'/doctors/' + doctor.id" tag="a"><h5>{{doctor.name}}</h5></router-link>
-            <p class="font-weight-light mb-0 docpanelsubtext">{{doctor.speciality}}</p>
+            <img class="img-fluid rounded-circle mb-3" :src=hospital.picture alt="">
+            <router-link :to="'/hospitals/' + hospital.id" tag="a"><h5>{{hospital.name}}</h5></router-link>
             <div class="availbledoc">
-              <a href="#">Meet in Person</a>
+                <a href="">Book Test</a>
             </div>
           </div>
         </div>
@@ -25,34 +23,22 @@ export default {
   components:{
       "search":search
     },
-    data:function(){
-        return{
-          doctorList:[],
-          filteredDocList:[]
-        }   
-    },
-    methods:{
-      checkAvl(){
-        const filterL=[];
-        for(let i=0;i<this.doctorList.length;i++){
-          if(this.doctorList[i].available_person){
-            filterL.push(this.doctorList[i]);
-          }
-        }
-        this.filteredDocList=filterL;
-      }
-    },
+  data:function(){
+    return{
+      hospitalList:[]
+    }
+  },
     created(){
-      axios.get('http://localhost:8001/doctors/doctors/')
+       axios.get('http://localhost:8001/hospitals/hospitals/')
         .then(res =>{
           const data=res.data
-          const doctors=[]
+          const hospitals=[]
           for(let key in data){
-            const doctor=data[key]
-            doctor.id=key
-            doctors.push(doctor)
+            const hospital=data[key]
+            hospital.id=key
+            hospitals.push(hospital)
           }
-          this.doctorList=doctors
+          this.hospitalList=hospitals
         })
     }
 }
@@ -79,9 +65,11 @@ export default {
   padding-top: 7rem;
   padding-bottom: 7rem;
 }
+
 .testimonials .testimonial-item {
   max-width: 18rem;
 }
+
 .testimonials .testimonial-item img {
   max-width: 12rem;
   box-shadow: 0px 5px 5px 0px #adb5bd;
@@ -111,5 +99,4 @@ export default {
 .availbledoc a:hover{
     background-color: rgb(243, 121, 14);
 }
-
 </style>

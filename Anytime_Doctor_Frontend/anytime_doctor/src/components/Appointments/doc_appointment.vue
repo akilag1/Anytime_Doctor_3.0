@@ -1,22 +1,66 @@
 <template>
     <div class="confirm-form">
       <form action="#" method="POST">
-        <h3>Patient's Name : </h3>
-        <h3>Doctor's Name : </h3>
-        <h3>Hospital : </h3>
-        <h3>date :  <input type="date" name="date" required> </h3>
-        <h3>Time(4 p.m. - 10 p.m.) :  <input type="time" name="time" required> </h3>
-        <h3>Patient Number : </h3>
+        <h3>Patient's Name : Akila </h3>
+        <h3>Doctor's Name : {{this.doctorList[this.id].name}} </h3>
+        <h3>Hospital : {{this.hospitalList[this.doctorList[this.id].hospital_id].name}} </h3>
+        <h3>date :  <input type="date" v-model="date" name="date" required> </h3>
+        <h3>Time(4 p.m. - 10 p.m.) :  <input type="time" v-model="time" name="time" required> </h3>
+        <h3>Patient Number : 4</h3>
         <div class="confirmapp_btn">
             <button class="btn btn-lg btn-primary">Go Back</button>
-            <button class="btn btn-lg btn-primary">Confirm</button>
+            <button class="btn btn-lg btn-primary" @click="sendPost()">Confirm</button>
         </div> 
       </form>  
     </div>
 </template>
 <script>
+import axios from 'axios';
 export default {
-    
+     data:function(){
+        return{
+          doctorList:[],
+          hospitalList:[],
+          date:"",
+          time:"",
+          id:this.$route.params.id,
+        }   
+    },
+    methods:{
+        sendPost:{
+            
+        }
+    },
+    watch:{
+       '$route'(to,from){
+         this.id=from.params.id;
+         this.id=to.params.id;
+       }
+    },
+    created(){
+      axios.get('http://localhost:8001/doctors/doctors/')
+        .then(res =>{
+          const data=res.data
+          const doctors=[]
+          for(let key in data){
+            const doctor=data[key]
+            doctor.id=key
+            doctors.push(doctor)
+          }
+          this.doctorList=doctors
+        }),
+         axios.get('http://localhost:8001/hospitals/hospitals/')
+        .then(res =>{
+          const data=res.data
+          const hospitals=[]
+          for(let key in data){
+            const hospital=data[key]
+            hospital.id=key
+            hospitals.push(hospital)
+          }
+          this.hospitalList=hospitals
+        })
+    }
 }
 </script>
 <style>

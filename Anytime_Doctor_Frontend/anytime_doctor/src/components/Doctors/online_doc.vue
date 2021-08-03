@@ -1,32 +1,50 @@
 <template>
+<div>
+<search></search>
  <section class="testimonials text-center bg-light testMnial">
+   {{this.checkAvl()}}
     <div class="row">
-       <!-- <div v-for="doctor in doctorList" :key="doctor.id"> -->
-         <!-- v-if="doctor.available_online" -->
-        <div class="col-lg-4 docitem" v-for="doctor in doctorList" :key="doctor.id"> 
+        <div class="col-lg-4 docitem" v-for="doctor in filteredDocList" :key="doctor.id"> 
           <div class="testimonial-item mx-auto mb-5 mb-lg-0">
             <img class="img-fluid rounded-circle mb-3" :src=doctor.picture alt="">
-            <h5>{{doctor.name}}</h5>
-            <p class="font-weight-light mb-0 docpanelsubtext">{{doctor.description}}</p>
+            <router-link :to="'/doctors/' + doctor.id" tag="a"><h5>{{doctor.name}}</h5></router-link>
+            <p class="font-weight-light mb-0 docpanelsubtext">{{doctor.speciality}}</p>
             <div class="availbledoc">
               <div class="avilblebtn"></div>
               <a href="">Start Video Chat</a>
             </div>
           </div>
         </div>
-       </div>
-    <!-- </div> -->
- </section>      
+    </div>
+ </section>
+</div>      
 </template>
 <script>
 import axios from 'axios';
+import search from '../Basic/search.vue';
 export default {
+  components:{
+      "search":search
+    },
     data:function(){
         return{
-          doctorList:[]
+          doctorList:[],
+          filteredDocList:[]
         }   
     },
+    methods:{
+      checkAvl(){
+        const filterL=[];
+        for(let i=0;i<this.doctorList.length;i++){
+          if(this.doctorList[i].available_online){
+            filterL.push(this.doctorList[i]);
+          }
+        }
+        this.filteredDocList=filterL;
+      }
+    },
     created(){
+      console,console.log("created");
       axios.get('http://localhost:8001/doctors/doctors/')
         .then(res =>{
           const data=res.data
