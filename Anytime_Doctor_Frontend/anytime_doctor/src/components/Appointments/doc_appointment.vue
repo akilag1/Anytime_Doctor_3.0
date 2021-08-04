@@ -9,7 +9,7 @@
         <h3>Patient Number : 4</h3>
         <div class="confirmapp_btn">
             <button class="btn btn-lg btn-primary">Go Back</button>
-            <button class="btn btn-lg btn-primary" @click="sendPost()">Confirm</button>
+            <button class="btn btn-lg btn-primary" type="button" @click="sendPost()">Confirm</button>
         </div> 
       </form>  
     </div>
@@ -27,8 +27,11 @@ export default {
         }   
     },
     methods:{
-        sendPost:{
-            
+        sendPost(){
+            const postData={pateint_id:3,doctor_id:this.doctorList[this.id],hospital_id:this.hospitalList[this.doctorList[this.id].hospital_id],date:this.date,time:this.time};
+            axios.post('http://localhost:8001/appotests/doctor_appo/',postData)
+              .then(res=>console.log(res))
+              .catch(error=>console.log(error))
         }
     },
     watch:{

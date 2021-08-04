@@ -1,46 +1,41 @@
 <template>
 <div class="signup"> 
         <form action="#" class="formsign">
-            <h5>{{this.mainEr}}</h5>
             <div class="form-group formitem">
             <label for="name">First Name</label>
             <input type="text" class="form-control" id="name" v-model="fname" ref="fname" required>
-            <p>{{this.error1}}</p>
             </div>
             <div class="form-group formitem">
             <label for="lname">Last Name</label>
             <input type="text" class="form-control" id="lname" v-model="lname" ref="lname"  required>
-            <p>{{this.error2}}</p>
             </div>
             <div class="form-group formitem">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" ref="email"  required>
-            <p>{{this.error3}}</p>
+            <input type="email" class="form-control" id="email" v-model="email" @input="$v.email.touch()" ref="email"  required>
+            <p v-if="!$v.email.email">Please enter a valid email address</p>
             </div>
             <div class="form-group formitem">
               <label for="contact">Contact No</label>
               <input type="text" class="form-control" id="contact" v-model="contact" ref="contact"  required>
-              <p>{{this.error4}}</p>
             </div>
             <div class="form-group formitem">
             <label for="pword">Password</label>
             <input type="password" class="form-control" id="pword" v-model="pword" ref="pword"  required>
-            <p>{{this.error5}}</p>
             </div>
             <div class="form-group formitem lastman">
                 <label for="cpword">Confirm Password</label>
                 <input type="password" class="form-control" id="cpword" v-model="cpword" ref="cpword"  required>
-                <p>{{this.error6}}</p>
             </div>
-            <button class="btn btn-block joinformbtn" @click="sendPost()">Join</button>
+            <button type="button" class="btn btn-block joinformbtn" @click="sendPost()">Join</button>
         </form> 
         <div class="ar_mem">
-            <a href="login">Already a member? Sign In</a>
+            <a href="/login">Already a member? Sign In</a>
         </div>
     </div> 
 </template>
 <script>
 import axios from 'axios'
+import {required, email} from 'vuelidate/lib/validators'
 export default {
     data:function(){
         return{
@@ -51,66 +46,23 @@ export default {
             pword:"",
             cpword:"",
             userList:[],
-            error1:"",
-            error2:"",
-            error3:"",
-            error4:"",
-            error5:"",
-            error6:"",
-            j:0,
-            mainEr:"",
+        }
+    },
+    validations:{
+        email:{
+            required,
+            email
         }
     },
     methods:{
         sendPost(){
-            this.validate();
-            console.log("sendPost function starts");
-
-            if(this.j==0){
-                const postData={username:this.fname,first_name:this.fname,last_name:this.lname,email:this.email,password:this.cpword};
-                const postDataEx={user:(this.userList[this.userList.length-1].id), contact_no:this.contact};
-                axios.post('http://localhost:8001/accounts/users/',postData);
-                axios.post('http://localhost:8001/accounts/usersEx/',postDataEx);
-            }
-            
+                // const postData={username:this.email,first_name:this.fname,last_name:this.lname,email:this.email,password:this.cpword};
+                // const postDataEx={user:(this.userList[this.userList.length-1].id), contact_no:this.contact};
+                // axios.post('http://localhost:8001/api/register/',postData)
+                //     .then(res=>console.log(res))
+                //     .catch(error=>console.log(error))
+                // this.$store.dispatch('register',postData);
         },
-        validate(){
-            this.j=0;
-            console.log("validate function started");
-            if(this.$refs.fname==null){
-                this.error1="This field can't be empty"
-            }
-            if(this.$refs.lname==null){
-                this.error2="This field can't be empty"
-            }
-            if(this.$refs.email==null){
-                this.error3="This field can't be empty"
-            }
-            if(this.$refs.contact==null){
-                this.error4="This field can't be empty"
-            }
-            if(this.$refs.pword==null){
-                this.error5="This field can't be empty"
-            }
-            if(this.$refs.cpword==null){
-                this.error6="This field can't be empty"
-            }
-
-            for(let i=0;i<this.userList.length;i++){
-                    if(this.userList[i].email==this.email)
-                    {
-                        this.mainEr="Already Exist";
-                        console.log("Already Exist");
-                        this.j=1;
-                    }
-            }
-
-            if(this.pword!=this.cpword){    
-                this.mainEr="Password and Confirm Password are not matching. Please retry ";
-                console.log("Passwords mismatching");
-                this.j=1;
-            }
-        }
     },
     created(){
          axios.get('http://localhost:8001/doctors/doctors/')

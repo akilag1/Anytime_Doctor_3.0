@@ -1,6 +1,6 @@
 <template>
 <div>
-<search></search>
+<search_hosp></search_hosp>
  <section class="testimonials text-center bg-light testMnial">
     <div class="row">
         <div class="col-lg-4 docitem" v-for="hospital in hospitalList" :key="hospital.id">
@@ -15,10 +15,10 @@
 </template>
 <script>
 import axios from 'axios'
-import search from '../Basic/search.vue';
+import search_hosp from '../Basic/search_hosp.vue';
 export default {
   components:{
-      "search":search
+      "search_hosp":search_hosp
     },
   data:function(){
     return{

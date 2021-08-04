@@ -32,7 +32,16 @@ INSTALLED_APPS = [
     'appotests.apps.AppotestsConfig',
     'rest_framework',
     'corsheaders',
+    'knox'
+    # 'rest_framework.authtoken'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        # 'rest_framework.authentication.TokenAuthentication',
+        'knox.auth.TokenAuthentication',
+    ]
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

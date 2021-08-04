@@ -10,7 +10,7 @@
             <router-link :to="'/doctors/' + doctor.id" tag="a"><h5>{{doctor.name}}</h5></router-link>
             <p class="font-weight-light mb-0 docpanelsubtext">{{doctor.speciality}}</p>
             <div class="availbledoc">
-              <a href="#">Meet in Person</a>
+              <router-link :to="'/doctors/available/'+ doctor.id" tag="a">Meet in Person</router-link>
             </div>
           </div>
         </div>

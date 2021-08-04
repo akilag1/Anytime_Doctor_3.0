@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6">
           <div class="mainbtn2">
-            <a href="#"><button type="button" class="btn btn-primary btn-lg signinbtn">Sign In</button></a>
+            <router-link to="/login" tag="a"><button type="button" class="btn btn-lg btn-primary signinbtn">SignIn</button></router-link>
           </div>  
         </div>
       </div>

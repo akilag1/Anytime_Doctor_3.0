@@ -1,6 +1,6 @@
 <template>
 <div>
-<search></search>
+<search_hosp></search_hosp>
  <section class="testimonials text-center bg-light testMnial">
     <div class="row">
         <div class="col-lg-4 docitem" v-for="hospital in hospitalList" :key="hospital.id">
@@ -8,7 +8,7 @@
             <img class="img-fluid rounded-circle mb-3" :src=hospital.picture alt="">
             <router-link :to="'/hospitals/' + hospital.id" tag="a"><h5>{{hospital.name}}</h5></router-link>
             <div class="availbledoc">
-                <a href="">Book Test</a>
+                <router-link :to="'/hospitals/test_available/'+ hospital.id" tag="a">Book Test</router-link>
             </div>
           </div>
         </div>
@@ -18,10 +18,10 @@
 </template>
 <script>
 import axios from 'axios'
-import search from '../Basic/search.vue';
+import search_hosp from '../Basic/search_hosp.vue';
 export default {
   components:{
-      "search":search
+      "search_hosp":search_hosp
     },
   data:function(){
     return{

@@ -7,7 +7,7 @@
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <input type="text" class="form-control search-slt" placeholder="Name">
+                                <input type="text" class="form-control search-slt" v-model="name" placeholder="Name">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                                 <input type="text" class="form-control search-slt" placeholder="City">
@@ -23,7 +23,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <button type="button" class="btn btn-block wrn-btn">Search</button>
+                                <button type="submit" class="btn btn-block wrn-btn">Search</button>
                             </div>
                         </div>
                     </div>
@@ -34,9 +34,14 @@
 </template>
 <script>
 export default {
-    // computed:{
-    //     count(){
-    //         return this.$store.state.i;
+    data:function(){
+        return{
+            name:""
+        }
+    },
+    // methods:{
+    //     onSubmit(){
+    //         this.$store.state.searchVal=this.name;
     //     }
     // }
 }

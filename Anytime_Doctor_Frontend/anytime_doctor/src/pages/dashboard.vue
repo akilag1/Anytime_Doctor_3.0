@@ -1,9 +1,9 @@
 <template>
   <div id="app">
      <navbar>
-        <slot slot="slot1"><a href="#" class="nav-link">Home</a></slot>
-        <slot slot="slot2"><a href="#" class="nav-link">Doctors</a></slot>
-        <slot slot="slot3"><a href="#" class="nav-link">Hospitals</a></slot>
+        <slot slot="slot1"><router-link to="/"><a href="#" class="nav-link">Home</a></router-link></slot>
+      <slot slot="slot2"><router-link to="/doctors"><a href="#" class="nav-link">Doctors</a></router-link></slot>
+      <slot slot="slot3"><router-link to="/hospitals"><a href="]#" class="nav-link">Hospitals</a></router-link></slot>
      </navbar>
      <div class="col-md-12 dashHeader">
         <h1>Welcome</h1>

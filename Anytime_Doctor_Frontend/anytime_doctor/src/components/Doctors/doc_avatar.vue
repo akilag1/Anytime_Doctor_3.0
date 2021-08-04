@@ -26,6 +26,11 @@ export default {
           doctorList:[]
         }   
     },
+    // watch:{
+    //     'this.$store.state'(){
+
+    //     }
+    //   },
     created(){
       axios.get('http://localhost:8001/doctors/doctors/')
         .then(res =>{
