@@ -8,7 +8,7 @@
             </div>
             <div class="form-group formitem lastman">
             <label for="lname">Password</label>
-            <input type="text" class="form-control" id="lname" v-model="pass">
+            <input type="password" class="form-control" id="lname" v-model="pass">
             </div>
             <button type="button" class="btn btn-block joinformbtn" @click="checkId()">Login</button>
         </form> 
@@ -22,7 +22,6 @@
 </div>    
 </template>
 <script>
-import axios from 'axios'
 export default {
     data:function(){
         return{
@@ -34,9 +33,10 @@ export default {
     methods:{
         checkId:function(){
             const postData={username:this.email,password:this.pass};
-            axios.post('http://localhost:8001/api/login/',postData)
-             .then(res=>console.log(res))
-             .catch(error=>console.log(error))
+            // axios.post('http://localhost:8001/api/login/',postData)
+            //  .then(res=>console.log(res))
+            //  .catch(error=>console.log(error))
+            this.$store.dispatch('login',postData);
             }
     }
 }

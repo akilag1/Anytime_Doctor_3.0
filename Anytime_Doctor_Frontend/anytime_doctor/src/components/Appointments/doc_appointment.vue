@@ -32,6 +32,7 @@ export default {
             axios.post('http://localhost:8001/appotests/doctor_appo/',postData)
               .then(res=>console.log(res))
               .catch(error=>console.log(error))
+              this.$route.push('/dashboard')
         }
     },
     watch:{

@@ -17,6 +17,7 @@ import dlogin from './components/Login/doc_login.vue';
 import hlogin from './components/Login/hosp_login.vue';
 import ddashboard from './pages/doctor_dash.vue';
 import hdashboard from './pages/hosp_dash.vue';
+import store from './store/store.js'
 
 export const routes=[
     { path: '', component: home },
@@ -37,7 +38,14 @@ export const routes=[
         {path: ':id', component: hosp_profile},
         {path: 'test_available/:id', component: test_appointment},
     ] },
-    { path: '/dashboard', component: dashboard },
+    { path: '/dashboard', component: dashboard , 
+        beforeEnter(to,from,next){
+            if(store.state.iDtoken){
+                next(); 
+            }else{
+                next('/login');
+            }
+        }},
     { path: '/login', component: login },
     { path: '/ddashboard', component: ddashboard },
     { path: '/hdashboard', component: hdashboard },

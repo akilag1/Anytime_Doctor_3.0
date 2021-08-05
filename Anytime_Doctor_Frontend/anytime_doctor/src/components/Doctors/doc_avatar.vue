@@ -1,6 +1,7 @@
 <template>
 <div>
 <search></search>
+<h1>{{this.searchVals}}</h1>
  <section class="testimonials text-center bg-light testMnial">
     <div class="row">
         <div class="col-lg-4 docitem" v-for="doctor in doctorList" :key="doctor.id">
@@ -26,11 +27,11 @@ export default {
           doctorList:[]
         }   
     },
-    // watch:{
-    //     'this.$store.state'(){
-
-    //     }
-    //   },
+    watch:{
+        searchVals(){
+          return this.$store.getters.searchVal;
+        }
+      },
     created(){
       axios.get('http://localhost:8001/doctors/doctors/')
         .then(res =>{

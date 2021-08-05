@@ -5,6 +5,7 @@
       <slot slot="slot2"><a href="#docpanel" class="nav-link" v-smooth-scroll={offset:-50}>Doctors</a></slot>
       <slot slot="slot3"><a href="#hosppanel" class="nav-link" v-smooth-scroll={offset:-150}>Hospitals</a></slot>
       <slot slot="slot4"><a href="#services" class="nav-link" v-smooth-scroll={offset:-50}>Services</a></slot>
+      <slot slot="slot5" v-if="auth"><router-link to="/dashboard"><a href="#" class="nav-link">Dashboard</a></router-link></slot>
     </navbar>
     <header_main></header_main>
     <docpanel id="docpanel"></docpanel>
@@ -32,6 +33,16 @@ export default {
     "services":services,
     "footer_main":footer,
   },
+  computed:{
+    auth(){
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 <style>

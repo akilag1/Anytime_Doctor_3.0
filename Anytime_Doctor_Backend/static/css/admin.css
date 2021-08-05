@@ -1,0 +1,40 @@
+#header{
+    background-color: #fad487;
+    color: black;
+}
+#branding{
+    margin-top: 1rem;
+}
+#branding p{
+    font-size: 1.5rem;
+    font-weight: 200;
+    border: #901838 solid 1px ;
+    border-radius: 5px;
+    padding: 8px;
+    color: black;
+    background-color: #96c2f5;
+    /* padding-top: 2rem; */
+}
+.content{
+    background-color: rgb(216, 215, 215);
+}
+#user-tools{
+    color: black;
+    font-size: 0.8rem;
+}
+#user-tools  a{
+    color: black !important;
+    font-size: 0.8rem;
+    border-bottom: none;
+}
+#user-tools  a:hover{
+    color: rgb(98, 7, 243) !important;
+    font-size: 0.8rem;
+    border-bottom: none;
+}
+#content form input[type="submit"]{
+    background-color: rgb(52, 96, 240);
+}
+#content form input[type="submit"]:hover{
+    background-color: rgb(3, 61, 250);
+}

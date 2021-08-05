@@ -28,6 +28,11 @@
                   <slot name="slot6" class="nav-link"></slot>
                 </li>
               </ul>
+               <div class="text-right" v-if="auth">
+                <ul class="navbar-nav mr-auto">
+                    <button type="button" @click="logout()"><li class="nav-item">Logout</li></button>
+                </ul>
+              </div>
             </div>
           </nav>
         </div>
@@ -36,7 +41,16 @@
 
 <script>
 export default {
-    
+  computed:{
+    auth(){
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 

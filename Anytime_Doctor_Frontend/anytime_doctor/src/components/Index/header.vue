@@ -7,7 +7,12 @@
           <h1 class="mb-5 maintext">Meet your Doctor from Home!</h1>
         </div>
       </div>
-      <div class="row">
+        <div class="row">
+        <div class="col-md-9 mx-auto" v-if="auth">
+            <h2>Best Experience With Best People!</h2>
+        </div>
+      </div>
+      <div class="row" v-if="!auth">
         <div class="col-md-6">
           <div class="mainbtn1">
             <router-link to="/register" tag="a"><button type="button" class="btn btn-lg joinbtn">Join</button></router-link>
@@ -25,7 +30,16 @@
 
 <script>
 export default {
-    
+    computed:{
+    auth(){
+      return this.$store.getters.isAuthenticated;
+    }
+  },
+  methods:{
+    logout(){
+      this.$store.dispatch('logout')
+    }
+  }
 }
 </script>
 

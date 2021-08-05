@@ -10,20 +10,20 @@
                                 <input type="text" class="form-control search-slt" v-model="name" placeholder="Name">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <input type="text" class="form-control search-slt" placeholder="City">
+                                <input type="text" class="form-control search-slt" v-model="city" placeholder="City">
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                    <option>Ophthalmologist</option>
-                                    <option>Cardilogist</option>
-                                    <option>Neuro Sergen</option>
-                                    <option>Dermatologist</option>
-                                    <option>Gynecologist</option>
-                                    <option>Allergist</option>
+                                <select class="form-control search-slt" id="exampleFormControlSelect1" v-model="speciality">
+                                    <option value="ophthalomologist">Ophthalmologist</option>
+                                    <option value="cardilogist">Cardilogist</option>
+                                    <option value="Neuro Sergen">Neuro Sergen</option>
+                                    <option value="Neuro Sergen">Neuro Sergen</option>
+                                    <option value="Gynecologist">Gynecologist</option>
+                                    <option value="Allergist">Allergist</option>
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                <button type="submit" class="btn btn-block wrn-btn">Search</button>
+                                <button type="button" class="btn btn-block wrn-btn" @click="onsubmit()">Search</button>
                             </div>
                         </div>
                     </div>
@@ -36,14 +36,18 @@
 export default {
     data:function(){
         return{
-            name:""
+            name:null,
+            city:null,
+            speciality:null
         }
     },
-    // methods:{
-    //     onSubmit(){
-    //         this.$store.state.searchVal=this.name;
-    //     }
-    // }
+    methods:{
+        onsubmit(){
+            this.$store.searchVals.name=this.name;
+            this.$store.searchVals.city=this.name;
+            this.$store.searchVals.speciality=this.name;
+        }
+    }
 }
 </script>
 <style>
