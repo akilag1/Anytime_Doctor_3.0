@@ -38,3 +38,6 @@
 #content form input[type="submit"]:hover{
     background-color: rgb(3, 61, 250);
 }
+.required{
+    color: black
+}

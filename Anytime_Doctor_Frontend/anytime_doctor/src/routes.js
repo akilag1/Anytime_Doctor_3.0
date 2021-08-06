@@ -23,11 +23,29 @@ export const routes=[
     { path: '', component: home },
     { path: '/doctors', component: doctors ,children:[
         {path: '', component: doc_avatar},
-        {path: 'available', component: available_doc},
-        {path: 'online_available', component: online_doc},
+        {path: 'available', component: available_doc,
+        beforeEnter(to,from,next){
+            if(store.state.iDtoken){
+                next(); 
+            }else{
+                next('/login');
+            }}},
+        {path: 'online_available', component: online_doc,
+        beforeEnter(to,from,next){
+            if(store.state.iDtoken){
+                next(); 
+            }else{
+                next('/login');
+            }},},
         {path: 'dlogin', component: dlogin},
         {path: ':id', component: doc_profile},
-        {path: 'available/:id', component: doc_appointment},
+        {path: 'available/:id', component: doc_appointment,
+        beforeEnter(to,from,next){
+            if(store.state.iDtoken){
+                next(); 
+            }else{
+                next('/login');
+            }},},
 
     ]},
     { path: '/register', component: join },
@@ -36,7 +54,13 @@ export const routes=[
         {path: 'test_available', component: test_available},
         {path: 'hlogin', component: hlogin},
         {path: ':id', component: hosp_profile},
-        {path: 'test_available/:id', component: test_appointment},
+        {path: 'test_available/:id', component: test_appointment, 
+        beforeEnter(to,from,next){
+            if(store.state.iDtoken){
+                next(); 
+            }else{
+                next('/login');
+            }},},
     ] },
     { path: '/dashboard', component: dashboard , 
         beforeEnter(to,from,next){
@@ -49,4 +73,5 @@ export const routes=[
     { path: '/login', component: login },
     { path: '/ddashboard', component: ddashboard },
     { path: '/hdashboard', component: hdashboard },
+    { path: '*', redirect: '/' },
 ]

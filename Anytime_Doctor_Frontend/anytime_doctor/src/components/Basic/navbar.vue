@@ -1,7 +1,7 @@
 <template>
     <div class="row navrow">
         <div class="col-md-12">
-          <nav class="navbar navbar-expand-lg navbar-light myNavbar">
+          <nav class="navbar navbar-expand-lg navbar-light myNavbar addcol">
             <router-link to="/" class="navbar-brand myNavTitle">ANYTIME DOCTOR</router-link>
             <!-- <a class="navbar-brand myNavTitle" href="#">ANYTIME DOCTOR</a> -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,8 +73,9 @@ export default {
     border: #901838 solid 1px ;
     border-radius: 5px;
     padding: 4px;
-    background-color: #96c2f5;
+    /* background-color: black; */
 }
+
 #navbarSupportedContent li a{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: rgb(0, 1, 5);
@@ -97,5 +98,8 @@ h5,
 h6 {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
+}
+.addcol{
+  color:red !important
 }
 </style>

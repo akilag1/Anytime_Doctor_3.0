@@ -1,7 +1,6 @@
 <template>
     <div class="confirm-form">
       <form action="#" method="POST">
-        <h3>Patient's Name : Akila </h3>
         <h3>Doctor's Name : {{this.doctorList[this.id].name}} </h3>
         <h3>Hospital : {{this.hospitalList[this.doctorList[this.id].hospital_id].name}} </h3>
         <h3>date :  <input type="date" v-model="date" name="date" required> </h3>
@@ -16,6 +15,7 @@
 </template>
 <script>
 import axios from 'axios';
+// import store from '../../store/store.js'
 export default {
      data:function(){
         return{
@@ -28,7 +28,7 @@ export default {
     },
     methods:{
         sendPost(){
-            const postData={doctor:this.doctorList[this.id].id,hospital:this.hospitalList[this.doctorList[this.id].hospital_id].id,date:this.date,time:this.time};
+            const postData={patient_id:this.$store.state.user_id,doctor_id:this.doctorList[this.id].id,hospital_id:this.hospitalList[this.doctorList[this.id].hospital_id].id,date:this.date,time:this.time};
             axios.post('http://localhost:8001/appotests/doctor_appo/',postData)
               .then(res=>console.log(res))
               .catch(error=>console.log(error))

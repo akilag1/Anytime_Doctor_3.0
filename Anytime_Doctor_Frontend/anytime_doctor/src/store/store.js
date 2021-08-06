@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios'
-// import routes from '../routes'
+import router from "../routes"; 
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state:{
         iDtoken:null,
+        user_id:null
     },
     searchVals:{
         name:null,
@@ -17,9 +18,12 @@ export default new Vuex.Store({
     mutations:{
         authUser(state,userData){
             state.iDtoken=userData.token
+            state.user_id=userData.userid
         },
         clearAuthData(state){
-            state.iDtoken=null
+            state.iDtoken=null;
+            state.user_id=null;
+            window.location.href="/"
         },
     },
     actions:{
@@ -28,7 +32,8 @@ export default new Vuex.Store({
                 .then(res=>{
                     console.log(res)
                     commit('authUser',{
-                        token:res.data.token
+                        token:res.data.data.token,
+                        userid:res.data.data.user_id
                     })
                 })
                 .catch(error=>console.log(error))
@@ -38,16 +43,17 @@ export default new Vuex.Store({
                 .then(res=>{
                     console.log(res)
                     commit('authUser',{
-                        token:res.data.token
+                        token:res.data.data.token,
+                        userid:res.data.data.user_id
                     })
+                    if(this.state.iDtoken!==null) {
+                        this.$router.push('/');
+                      }
+                      else{
+                        router.push('/login');
+                      }
             })
              .catch(error=>console.log(error))
-             if(this.state.iDtoken!==null) {
-                this.$router.push('/');
-              }
-              else{
-                  this.$router.push('/login');
-              }
         },
         logout({commit}){
             commit('clearAuthData')

@@ -11,7 +11,7 @@
             </div>
             <div class="form-group formitem">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" v-model="email" @blur="$v.email.touch()" ref="email"  required>
+            <input type="email" class="form-control" id="email" v-model="email" @blur="$v.email.touch()" required>
             </div>
             <p class="warn" v-if="!$v.email.email">Please enter a valid email address</p>
             <!-- <p class="warn" v-if="!$v.email.required">This field must not be empty</p> -->
@@ -24,11 +24,13 @@
             <label for="pword">Password</label>
             <input type="password" class="form-control" @blur="$v.pword.touch()" id="pword" v-model="pword" ref="pword"  required>
             </div>
-            <p class="warn" v-if="!$v.pword.minVal">Minimum number of characters are 3</p>
+            <!-- <p class="warn" v-if="!$v.pword.minVal">Minimum number of characters are 3</p> -->
             <div class="form-group formitem lastman">
                 <label for="cpword">Confirm Password</label>
-                <input type="password" class="form-control" @blur="$v.cpword.touch()" id="cpword" v-model="cpword" ref="cpword"  required>
+                <input type="password" class="form-control" id="cpword" v-model="cpword"  @blur="$v.pword.touch()"  required>
+                <!-- <p class="warn" v-if="!$v.cpword.sameAs">Passwords are not matching</p> -->
             </div>
+            <p class="warn" v-if="!$v.cpword.sameAs">Passwords are not matching</p>
             <button type="button" class="btn btn-block joinformbtn" @click="sendPost()">Join</button>
         </form> 
         <div class="ar_mem">
@@ -38,7 +40,7 @@
 </template>
 <script>
 import axios from 'axios'
-import {required, email, minValue} from 'vuelidate/lib/validators'
+import {required, email, minValue, sameAs} from 'vuelidate/lib/validators'
 export default {
     data:function(){
         return{
@@ -60,7 +62,8 @@ export default {
             minVal:minValue(6)
         },
         cpword:{
-            minVal:minValue(6)
+            minVal:minValue(6),
+            sameAs:sameAs('pword')
         }
     },
     methods:{

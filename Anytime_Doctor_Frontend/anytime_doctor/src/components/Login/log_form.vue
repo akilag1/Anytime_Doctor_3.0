@@ -37,6 +37,7 @@ export default {
             //  .then(res=>console.log(res))
             //  .catch(error=>console.log(error))
             this.$store.dispatch('login',postData);
+            // { path: '*', redirect: '/' },
             }
     }
 }

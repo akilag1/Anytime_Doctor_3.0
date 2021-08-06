@@ -9,6 +9,7 @@
             <img class="img-fluid rounded-circle mb-3" :src=doctor.picture alt="">
             <router-link :to="'/doctors/' + doctor.id" tag="a"><h5>{{doctor.name}}</h5></router-link>
             <p class="font-weight-light mb-0 docpanelsubtext">{{doctor.speciality}}</p>
+            <input type="radio">test
           </div>
         </div>
     </div>
