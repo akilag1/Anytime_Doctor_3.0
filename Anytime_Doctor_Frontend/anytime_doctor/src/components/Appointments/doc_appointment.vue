@@ -28,12 +28,12 @@ export default {
     },
     methods:{
         sendPost(){
-            const postData={pateint_id:3,doctor_id:this.doctorList[this.id],hospital_id:this.hospitalList[this.doctorList[this.id].hospital_id],date:this.date,time:this.time};
+            const postData={doctor:this.doctorList[this.id].id,hospital:this.hospitalList[this.doctorList[this.id].hospital_id].id,date:this.date,time:this.time};
             axios.post('http://localhost:8001/appotests/doctor_appo/',postData)
               .then(res=>console.log(res))
               .catch(error=>console.log(error))
-              this.$route.push('/dashboard')
-        }
+               this.$router.push('/dashboard')
+        },
     },
     watch:{
        '$route'(to,from){

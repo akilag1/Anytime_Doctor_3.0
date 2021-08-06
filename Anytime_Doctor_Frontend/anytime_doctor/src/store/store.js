@@ -42,19 +42,24 @@ export default new Vuex.Store({
                     })
             })
              .catch(error=>console.log(error))
-            this.getters.onLinkClicked
+             if(this.state.iDtoken!==null) {
+                this.$router.push('/');
+              }
+              else{
+                  this.$router.push('/login');
+              }
         },
         logout({commit}){
             commit('clearAuthData')
         },
-        onLinkClicked() {
-            if(this.state.iDtoken!==null) {
-              this.$router.push('/');
-            }
-            else{
-                this.$router.push('/login');
-            }
-          }
+        // onLinkClicked() {
+        //     if(this.state.iDtoken!==null) {
+        //       this.$router.push('/');
+        //     }
+        //     else{
+        //         this.$router.push('/login');
+        //     }
+        //   }
     },
     getters:{
         isAuthenticated(state){

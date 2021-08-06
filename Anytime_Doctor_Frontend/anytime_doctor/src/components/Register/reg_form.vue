@@ -15,6 +15,7 @@
             </div>
             <p class="warn" v-if="!$v.email.email">Please enter a valid email address</p>
             <!-- <p class="warn" v-if="!$v.email.required">This field must not be empty</p> -->
+
             <div class="form-group formitem">
               <label for="contact">Contact No</label>
               <input type="text" class="form-control" id="contact" v-model="contact" ref="contact"  required>
@@ -28,7 +29,6 @@
                 <label for="cpword">Confirm Password</label>
                 <input type="password" class="form-control" @blur="$v.cpword.touch()" id="cpword" v-model="cpword" ref="cpword"  required>
             </div>
-            <p class="warn" v-if="!$v.cpword.minVal">Minimum number of characters are 3</p>
             <button type="button" class="btn btn-block joinformbtn" @click="sendPost()">Join</button>
         </form> 
         <div class="ar_mem">
@@ -140,5 +140,8 @@ export default {
 .warn{
     color: red;
     text-align: center;
+}
+.error_cls{
+    background-color:red
 }
 </style>
